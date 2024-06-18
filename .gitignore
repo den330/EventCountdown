@@ -1,0 +1,52 @@
+# Xcode
+.DS_Store
+*.xcuserstate
+project.xcworkspace
+xcuserdata
+*.xcscmblueprint
+DerivedData/
+*.hmap
+*.ipa
+*.xcarchive
+*.xcodeproj/*
+
+# Swift PM
+.build/
+.swiftpm/xcode/package.resolved
+
+# CocoaPods
+Pods/
+Podfile.lock
+
+# Carthage
+Carthage/Build/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+# App Signer
+*.app.mobileprovision
+*.app.dSYM.zip
+*.app.dSYM
+
+# Others
+*.log
+*.log.*
+*.bak
+*.swp
+*.lock
+profile
+
+# OS X
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
