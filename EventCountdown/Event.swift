@@ -6,7 +6,9 @@
 //
 
 import Foundation
+import SwiftData
 
+@Model
 class Event: Identifiable {
     var id = UUID()
     var date: Date

@@ -6,24 +6,30 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
-    @StateObject var viewModel = EventViewModel()
+    @StateObject var viewModel: EventViewModel
     @State private var selectedDate: Date = Date()
     @State private var eventName: String = ""
     var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     private func addEvent() {
         viewModel.addEvent(name: eventName, date: selectedDate)
     }
+    
+    init(modelContext: ModelContext) {
+        _viewModel = StateObject(wrappedValue: EventViewModel(context: modelContext))
+    }
+    
     var body: some View {
         VStack {
-            VStack {
+            VStack(spacing: 20) {
                 Text("Type in event name here:")
-                TextField("Enter event name", text: $eventName).border(Color.black).padding(.leading, 30).padding(.trailing, 30).padding(.top, 20)
-                DatePicker("Select a date", selection: $selectedDate, displayedComponents: [.date, .hourAndMinute]).padding(.top, 20)
+                TextField("Enter event name", text: $eventName).border(Color.black).padding(.leading, 30).padding(.trailing, 30)
+                DatePicker("Select a date", selection: $selectedDate, displayedComponents: [.date, .hourAndMinute])
                 Button("Add Event") {
                     addEvent()
-                }.padding(.top, 20)
+                }.background(Color.red).font(.callout)
             }
             List {
                 ForEach(viewModel.activeList) { event in
@@ -46,6 +52,7 @@ struct ContentView: View {
     }
 }
 
-#Preview {
-    ContentView()
-}
+//#Preview {
+//    let container = ModelContainer(for: Event.self)
+//    ContentView(modelContext: container.mainContext)
+//}

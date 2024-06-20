@@ -6,9 +6,17 @@
 //
 
 import Foundation
+import SwiftData
 
 class EventViewModel: ObservableObject {
-    @Published var eventList: [Event] = [];
+    @Published var eventList: [Event]
+    var modelContext: ModelContext
+    
+    init(context: ModelContext) {
+        self.modelContext = context
+        try! eventList = context.fetch(FetchDescriptor<Event>())
+    }
+
     var activeList: [Event] {
         eventList.filter{$0.getSecFromNow() >= 0}
     }
@@ -21,6 +29,7 @@ class EventViewModel: ObservableObject {
         if event.getSecFromNow() <= 0 {
             return
         }
+        modelContext.insert(event)
         eventList.append(event)
     }
     
@@ -29,6 +38,7 @@ class EventViewModel: ObservableObject {
             return
         }
         let event = activeList[index]
+        modelContext.delete(event)
         eventList = eventList.filter{ $0.id != event.id }
     }
 }
