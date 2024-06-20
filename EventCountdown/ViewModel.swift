@@ -9,6 +9,9 @@ import Foundation
 
 class EventViewModel: ObservableObject {
     @Published var eventList: [Event] = [];
+    var activeList: [Event] {
+        eventList.filter{$0.getSecFromNow() >= 0}
+    }
     func addEvent(name: String, date: Date) {
         let calendar = Calendar.current
         let components = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: date)
@@ -21,7 +24,11 @@ class EventViewModel: ObservableObject {
         eventList.append(event)
     }
     
-    func removeEvent(id: UUID) {
-        eventList = eventList.filter{ $0.id != id }
+    func removeEvent(indexSet: IndexSet) {
+        guard let index = indexSet.first else {
+            return
+        }
+        let event = activeList[index]
+        eventList = eventList.filter{ $0.id != event.id }
     }
 }
