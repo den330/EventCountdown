@@ -17,3 +17,11 @@ struct Util {
         return (day, hour, min, sec)
     }
 }
+
+extension Date {
+    func convertToString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        return dateFormatter.string(from: self)
+    }
+}

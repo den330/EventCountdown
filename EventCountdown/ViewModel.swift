@@ -9,8 +9,13 @@ import Foundation
 
 class EventViewModel: ObservableObject {
     @Published var eventList: [Event] = [];
-    func addEvent(name: String, year: Int, month: Int, day: Int, hour: Int, minute: Int) {
-        guard let event = Event(name: name, year: year, month: month, day: day, hour: hour, minute: minute) else {
+    func addEvent(name: String, date: Date) {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: date)
+        guard let year = components.year, let month = components.month, let day = components.day, let hour = components.hour, let minute = components.minute, let event = Event(name: name, year: year, month: month, day: day, hour: hour, minute: minute)  else {
+            return
+        }
+        if event.getSecFromNow() <= 0 {
             return
         }
         eventList.append(event)
