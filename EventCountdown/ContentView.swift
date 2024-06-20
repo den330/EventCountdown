@@ -25,12 +25,17 @@ struct ContentView: View {
                 }
             }
             List(viewModel.eventList, id: \.id, rowContent: { event in
-                let components = Util.convertSecondsToComponents(timeInSec: event.getSecFromNow())
-                VStack {
-                    Text(event.name)
-                    HStack {
-                        Text(event.date.convertToString())
-                        Text("\(components.0) days \(components.1) hours, \(components.2) minutes \(components.3) seconds")
+                let timeInSec = event.getSecFromNow()
+                if timeInSec < 0 {
+                    EmptyView()
+                } else {
+                    let components = Util.convertSecondsToComponents(timeInSec: timeInSec)
+                    VStack {
+                        Text(event.name)
+                        HStack {
+                            Text(event.date.convertToString())
+                            Text("\(components.0) days \(components.1) hours, \(components.2) minutes \(components.3) seconds")
+                        }
                     }
                 }
             }).onReceive(timer) { _ in
