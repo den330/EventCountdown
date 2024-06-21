@@ -48,6 +48,21 @@ struct ContentView: View {
             }.onReceive(timer, perform: { _ in
                 self.viewModel.objectWillChange.send()
             })
+        }.onAppear{
+            UNUserNotificationCenter.current().getNotificationSettings { settings in
+                if settings.authorizationStatus == .notDetermined {
+                    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+                        DispatchQueue.main.async {
+                            viewModel.shouldNotify = granted
+                        }
+                        if let error = error {
+                            print("Authorization error: \(error.localizedDescription)")
+                        }
+                    }
+                } else {
+                    viewModel.shouldNotify = settings.authorizationStatus == .authorized
+                }
+            }
         }
     }
 }

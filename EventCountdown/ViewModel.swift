@@ -7,10 +7,12 @@
 
 import Foundation
 import SwiftData
+import UserNotifications
 
 class EventViewModel: ObservableObject {
     @Published var eventList: [Event]
     var modelContext: ModelContext
+    var shouldNotify:Bool = false
     
     init(context: ModelContext) {
         self.modelContext = context
@@ -31,6 +33,9 @@ class EventViewModel: ObservableObject {
         }
         modelContext.insert(event)
         eventList.append(event)
+        if shouldNotify {
+            scheduleNotification(event: event)
+        }
     }
     
     func removeEvent(indexSet: IndexSet) {
@@ -40,5 +45,26 @@ class EventViewModel: ObservableObject {
         let event = activeList[index]
         modelContext.delete(event)
         eventList = eventList.filter{ $0.id != event.id }
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [event.id.uuidString])
+    }
+    
+    func scheduleNotification(event: Event) {
+        let content = UNMutableNotificationContent()
+        content.title = "Incoming Activity Alert"
+        content.body = "\(event.name) in less than 3 days!"
+        content.sound = .default
+        guard let triggerDate = Calendar.current.date(byAdding: .day, value: -3, to: event.date) else {
+            return
+        }
+        let dateComp = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: triggerDate)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComp, repeats: false)
+        let request = UNNotificationRequest(identifier: event.id.uuidString, content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request) { error in
+            if let error = error {
+                print("error scheduling notification \(error)")
+            } else {
+                print("Notification scheduled for three days before the event")
+            }
+        }
     }
 }
