@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9028CEFA2C2372D0000BC327 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9028CEF92C2372D0000BC327 /* Event.swift */; };
+		9028CEFC2C2372F2000BC327 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9028CEFB2C2372F2000BC327 /* ViewModel.swift */; };
+		9028CEFE2C238E14000BC327 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9028CEFD2C238E14000BC327 /* Util.swift */; };
 		908185782C223BFE007F1A0D /* EventCountdownApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908185772C223BFE007F1A0D /* EventCountdownApp.swift */; };
 		9081857A2C223BFE007F1A0D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908185792C223BFE007F1A0D /* ContentView.swift */; };
 		9081857C2C223C00007F1A0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9081857B2C223C00007F1A0D /* Assets.xcassets */; };
@@ -14,6 +17,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9028CEF92C2372D0000BC327 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		9028CEFB2C2372F2000BC327 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		9028CEFD2C238E14000BC327 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		908185742C223BFE007F1A0D /* EventCountdown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventCountdown.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		908185772C223BFE007F1A0D /* EventCountdownApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCountdownApp.swift; sourceTree = "<group>"; };
 		908185792C223BFE007F1A0D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -51,10 +57,13 @@
 		908185762C223BFE007F1A0D /* EventCountdown */ = {
 			isa = PBXGroup;
 			children = (
+				9028CEFD2C238E14000BC327 /* Util.swift */,
 				908185772C223BFE007F1A0D /* EventCountdownApp.swift */,
+				9028CEFB2C2372F2000BC327 /* ViewModel.swift */,
 				908185792C223BFE007F1A0D /* ContentView.swift */,
 				9081857B2C223C00007F1A0D /* Assets.xcassets */,
 				9081857D2C223C00007F1A0D /* Preview Content */,
+				9028CEF92C2372D0000BC327 /* Event.swift */,
 			);
 			path = EventCountdown;
 			sourceTree = "<group>";
@@ -138,6 +147,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9081857A2C223BFE007F1A0D /* ContentView.swift in Sources */,
+				9028CEFA2C2372D0000BC327 /* Event.swift in Sources */,
+				9028CEFE2C238E14000BC327 /* Util.swift in Sources */,
+				9028CEFC2C2372F2000BC327 /* ViewModel.swift in Sources */,
 				908185782C223BFE007F1A0D /* EventCountdownApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -269,10 +281,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EventCountdown/Preview Content\"";
-				DEVELOPMENT_TEAM = T9DJN8R6E9;
+				DEVELOPMENT_TEAM = KG4ZLSV952;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = KG4ZLSV952;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -285,8 +300,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jackY.developer.EventCountdown;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yaxin.eventcountdown;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = YaxinDev;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -298,10 +315,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EventCountdown/Preview Content\"";
-				DEVELOPMENT_TEAM = T9DJN8R6E9;
+				DEVELOPMENT_TEAM = KG4ZLSV952;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = KG4ZLSV952;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -314,8 +334,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jackY.developer.EventCountdown;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yaxin.eventcountdown;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = YaxinProd;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
